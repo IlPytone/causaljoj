@@ -2,7 +2,6 @@ import re
 import telepot
 import requests
 from flask import Flask, request
-
 try:
     from Queue import Queue
 except ImportError:
