@@ -36,7 +36,7 @@ def on_chat_message(msg):
 			r = requests.post(coffe_link_mcd, verify = True, data = headers)
 			urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', r.text)
 			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendDocument?chat_id="+str(chat_id)+"&document="+urllib.parse.quote(urls[1] + "%20Customer%20Feedback%20-%20Coupon%20Web_2.jpg"))
-			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=<a href=" + 'http://survey.fast-insight.com/mcd/it/v2025_coupon.php?code=' + str(urls[1])[74:106])+ "&type=h" +">NEW DESIGN!</a>"
+			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=<a href=" + 'http://survey.fast-insight.com/mcd/it/v2025_coupon.php?code=' + str(urls[1])[74:106])+ "&type=h" +">NEW DESIGN!</a>&parse_mode=HTML")
 bot.message_loop({'chat': on_chat_message}, source=update_queue)
 @app.route('/', methods=['GET', 'POST'])
 def pass_update():
