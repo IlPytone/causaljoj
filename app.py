@@ -1,7 +1,6 @@
 import re
 import telepot
 import requests
-import urllib.parse
 from flask import Flask, request
 
 try:
@@ -36,6 +35,7 @@ def on_chat_message(msg):
 			r = requests.post(coffe_link_mcd, verify = True, data = headers)
 			urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', r.text)
 			link = "http://survey.fast-insight.com/mcd/it/v2025_coupon.php?code=" + str(urls[1])[74:106] + "&type=h"
+			print(link)
 			bot.sendDocument(chat_id, link)
 bot.message_loop({'chat': on_chat_message}, source=update_queue)
 @app.route('/', methods=['GET', 'POST'])
