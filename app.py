@@ -29,13 +29,13 @@ def on_chat_message(msg):
 	if content_type == "text":
 		text = msg["text"].lower()
 		if text.startswith("/start"):
-			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+chat_id+"&text=Buongiorno, ti auguro di gustarti un buon caffè gratis. 🤙")
+			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=Buongiorno, ti auguro di gustarti un buon caffè gratis. 🤙")
 		elif text.startswith("/ping"):
-			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+chat_id+"&text=Pong.")
+			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=Pong.")
 		elif text.startswith("/coffe"):
 			r = requests.post(coffe_link_mcd, verify = True, data = headers)
 			urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', r.text)
-			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendDocument?chat_id="+chat_id+"&document="+urllib.parse.quote(pdf_link = urls[1] + "%20Customer%20Feedback%20-%20Coupon%20Web_2.jpg"))
+			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendDocument?chat_id="+str(chat_id)+"&document="+urllib.parse.quote(pdf_link = urls[1] + "%20Customer%20Feedback%20-%20Coupon%20Web_2.jpg"))
 
 bot.message_loop({'chat': on_chat_message}, source=update_queue)
 @app.route('/', methods=['GET', 'POST'])
