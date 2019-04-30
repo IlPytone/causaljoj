@@ -29,7 +29,7 @@ def on_chat_message(msg):
 	if content_type == "text":
 		text = msg["text"].lower()
 		if text.startswith("/start"):
-			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=Buongiorno"+ msg["from"]["first_name"]+", ti auguro di gustarti un buon caffè gratis. 🤙")
+			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=Buongiorno "+ msg["from"]["first_name"]+", ti auguro di gustarti un buon caffè gratis. 🤙")
 		elif text.startswith("/ping"):
 			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=Pong.")
 		elif text.startswith("/coffe"):
