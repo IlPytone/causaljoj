@@ -2,4 +2,3 @@ gunicorn
 telepot == 12.7
 flask
 requests
-urllib
