@@ -36,7 +36,7 @@ def on_chat_message(msg):
 			urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', r.text)
 			link = "http://survey.fast-insight.com/mcd/it/v2025_coupon.php?code=" + str(urls[1])[74:106] + "&type=h"
 			print(link)
-			requests.get("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendDocument",verify = True, data = {"chat_id" : chat_id, "document": link})
+			requests.get("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendDocument",verify = True, data = {"chat_id" : chat_id, "document": link, "reply_to_message_id" : msg["message_id"]})
 bot.message_loop({'chat': on_chat_message}, source=update_queue)
 @app.route('/', methods=['GET', 'POST'])
 def pass_update():
