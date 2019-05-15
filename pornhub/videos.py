@@ -28,7 +28,7 @@ class Videos(object):
         return "search="+ cart +"&page=" +page_num
 
     def _loadVideosPage(self, page_num):
-        r = requests.get(BASE_URL + VIDEOS_URL+"?"+self._craftVideoURL(cart=search keywords,page_num), headers=HEADERS, proxies=self.ProxyDictionary) 
+        r = requests.get(BASE_URL + VIDEOS_URL+"?"+self._craftVideoURL(cart=search_keywords,page_num), headers=HEADERS, proxies=self.ProxyDictionary) 
         print(BASE_URL + VIDEOS_URL) 
         html = r.text
 
