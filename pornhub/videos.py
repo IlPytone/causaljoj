@@ -29,6 +29,7 @@ class Videos(object):
 
     def _loadVideosPage(self, page_num):
         r = requests.get(BASE_URL + VIDEOS_URL, params=self._craftVideoURL(page_num), headers=HEADERS, proxies=self.ProxyDictionary)
+	print(BASE_URL + VIDEOS_URL) 
         html = r.text
 
         return BeautifulSoup(html, "lxml")
