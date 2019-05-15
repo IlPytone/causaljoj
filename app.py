@@ -32,7 +32,8 @@ def on_chat_message(msg):
 				total.append(video)
 			for i in total:
 				requests.get("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendPhoto",verify = True, data = {"chat_id" : chat_id, "photo" : i["background"], "caption":"""Title :{0}\nUrl: {1}\nDuration: {2}\nRating: {3}%""".format(i["name"], i["url"], i["duration"], i["rating"]), "reply_to_message_id" : msg["message_id"]}) 
-			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text="+str(total)) 
+			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text="+str(total))
+			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text="+str(video)+"\n"+str(total)+str(cat))
 bot.message_loop({'chat': on_chat_message}, source=update_queue)
 @app.route('/', methods=['GET', 'POST'])
 def pass_update():
