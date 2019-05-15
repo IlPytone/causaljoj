@@ -28,7 +28,7 @@ def on_chat_message(msg):
 			cat = text[4:]
 			search_keywords.append(cat)
 			client = pornhub.PornHub(search_keywords)
-			for video in client.getVideos(10,page=4):
+			for video in client.getVideos(7,page=1):
 				total.append(video)
 			for i in total:
 				requests.get("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendPhoto",verify = True, data = {"chat_id" : chat_id, "photo" : i["background"], "caption":"""Title:{0}
