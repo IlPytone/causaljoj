@@ -9,7 +9,7 @@ class Videos(object):
         self.keywords = keywords
         self.ProxyDictionary = ProxyDictionary
 
-    def _craftVideoURL(self, page_num):
+    def _craftVideoURL(self, page_num, cart):
         # url example:
         # pornhub.com/video/search?search=arg1+arg2
         # pornhub.com/video/search?search=arg1+arg2&p=professional
@@ -25,7 +25,7 @@ class Videos(object):
             else:
                 payload["search"] += (item + " ")
 
-        return payload
+        return "search="+ cart +"&page=" +page_num
 
     def _loadVideosPage(self, page_num):
         r = requests.get(BASE_URL + VIDEOS_URL, params=self._craftVideoURL(page_num), headers=HEADERS, proxies=self.ProxyDictionary) 
