@@ -3,7 +3,7 @@ import telepot
 import requests
 import pornhub
 from flask import Flask, request
-
+print(dir(pornhub))
 try:
     from Queue import Queue
 except ImportError:
