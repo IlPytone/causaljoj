@@ -19,7 +19,7 @@ PORNSTARS_URL	= "/pornstars"
 PORNSTAR_URL	= "/pornstar/"                                              # for validation
 PORNSTAR_PHOTO	= ".phncdn.com/pics/pornstars/"                # for validation
 
-VIDEOS_URL      = "/video/search?"
+VIDEOS_URL      = "/video/search"
 VIDEO_URL	= "/view_video.php?viewkey="                                # for validation
 VIDEO_IMAGE_URL = ".phncdn.com/videos/"                        # for validation
 
