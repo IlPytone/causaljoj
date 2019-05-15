@@ -10,7 +10,6 @@ except ImportError:
     from queue import Queue
 TOKEN = "885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ"
 search_keywords = []
-total = []
 app = Flask(__name__)
 update_queue = Queue()
 bot = telepot.Bot(TOKEN)
@@ -24,6 +23,7 @@ def on_chat_message(msg):
 		elif text.startswith("/ping"):
 			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=Pong.")
 		elif text.startswith("/ph/"):
+                        total = [] 
 			cat = text[4:]
 			search_keywords.append(cat)
 			client = pornhub.PornHub(search_keywords)
