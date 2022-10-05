@@ -1,15 +1,18 @@
 import re
+import os 
+import random
 import telepot
 import requests
-import pornhub
+from pathlib import Path
 from flask import Flask, request
-print(dir(pornhub))
-print("Pippo")
+media_folder = Path(__file__).parent / "media"
+
+
 try:
     from Queue import Queue
 except ImportError:
     from queue import Queue
-TOKEN = "885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ"
+TOKEN = "5654192709:AAGs4M9nHZD2JFXUrur2S72Lm0_0KeLrnoU"
 app = Flask(__name__)
 update_queue = Queue()
 bot = telepot.Bot(TOKEN)
@@ -19,19 +22,13 @@ def on_chat_message(msg):
 	if content_type == "text":
 		text = msg["text"].lower()
 		if text.startswith("/start"):
-			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=Buongiorno "+ msg["from"]["first_name"]+", ti auguro di gustarti un buon caffè gratis. 🤙")
+			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=Remember "+ msg["from"]["first_name"]+", PolyML is the way. 🤙")
 		elif text.startswith("/ping"):
 			requests.post("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendMessage?chat_id="+str(chat_id)+"&text=Pong.")
-		elif text.startswith("/ph/"):
-			total = []
-			search_keywords = []
-			cat = text[4:]
-			search_keywords.append(cat)
-			client = pornhub.PornHub(search_keywords)
-			for video in client.getVideos(10,page=1):
-				total.append(video)
-			for i in total:
-				requests.get("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendPhoto",verify = True, data = {"chat_id" : chat_id, "photo" : i["background"], "caption":"""Title :{0}\nUrl: {1}\nDuration: {2}\nRating: {3}%""".format(i["name"], i["url"], i["duration"], i["rating"]), "reply_to_message_id" : msg["message_id"]}) 
+		if "kuper" in text:
+			random_picture = random.choice(os.listdir(media_folder))
+			requests.get("https://api.telegram.org/bot885925187:AAH9GMyKo6EICdqKc5hzHqzXj2Qxyj_PPMQ/sendPhoto",verify = True, data = {"chat_id" : chat_id, "photo": f"app/media/{random_picture}"), "reply_to_message_id" : msg["message_id"]})
+			
 bot.message_loop({'chat': on_chat_message}, source=update_queue)
 @app.route('/', methods=['GET', 'POST'])
 def pass_update():
